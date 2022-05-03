@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CasillaController;
+use App\Http\Controllers\CasilllaController;
+use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\VotoController;
+
+use App\Http\Controllers\auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +23,16 @@ Route::get('/', function () {
 });
 
 Route::resource("candidato", CandidatoController::class);
+
+Route::resource("casilla", CasilllaController::class);
+
+/* LOGIN WITH FACEBOOK */
+
+Route::get('login', [LoginController::class.'index'])->name('login');
+Route::get('Login/facebook',[LoginController::class, 'redirectToFacebookProvider'] );
+Route::get('login/facebook/callback', [LoginController::class, 'handleProviderFacebookCallback']);
+Route::get('logout', [LoginController::class, 'logout']);
+
+Route::middleware(['auth'])->group(fuction(){
+    Route::resource('voto', VotoController::class);
+});

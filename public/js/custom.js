@@ -27,3 +27,9 @@ function validateData (){
     }
     return isValid;
 }
+function previewPDF (event, idFrame){
+    if(event.target.files.lenght>0){
+        let src=URL.createObjectURL(event.target.files[0]);
+        let previewPDF=document.getElementById
+    }
+}

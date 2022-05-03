@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Api\GenericController as GenericController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\VAlidator;
+use App\Models\Candidato;
 
-class CasilllaController extends Controller
+class CandidatoController extends GenericController
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,9 @@ class CasilllaController extends Controller
      */
     public function index()
     {
-        //
+        $candidatos=Candidato::all();
+        $resp=$this->sendResponse($candidatos. "Listado de candidatos");
+        return ($resp);
     }
 
     /**
@@ -23,7 +28,7 @@ class CasilllaController extends Controller
      */
     public function create()
     {
-        return view('casilla/create');
+        //
     }
 
     /**
@@ -34,7 +39,17 @@ class CasilllaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validacion=Validator::make($request->all(),['nombrecompleto'=>'unique:candidato|requiered|max:200', 'sexo'=>'required']);
+        if($validacion->fails()){
+            return $this->sendError("Error de validacion", $validacion->errors());
+            $fotocandidato="";
+            $perfilcandidato="";
+            if($request>hasFile('foto')){
+                $foto=$request->file('foto');
+                $fotocandidato=$foto->getClientOriginalName();
+            }
+            $campos=array('nombrecompleto'=>$request->nombrecompleto,'sexo'=>$request->sexo, 'foto'=>$fotocandidato, 'perfil'=>$perfil);
+        }
     }
 
     /**
