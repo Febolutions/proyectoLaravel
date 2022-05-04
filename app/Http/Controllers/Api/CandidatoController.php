@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\GenericController as GenericController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\VAlidator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Candidato;
 
 class CandidatoController extends GenericController
@@ -42,13 +42,31 @@ class CandidatoController extends GenericController
         $validacion=Validator::make($request->all(),['nombrecompleto'=>'unique:candidato|requiered|max:200', 'sexo'=>'required']);
         if($validacion->fails()){
             return $this->sendError("Error de validacion", $validacion->errors());
+            
             $fotocandidato="";
             $perfilcandidato="";
-            if($request>hasFile('foto')){
+            
+            if($request>hasFile('foto') ){
                 $foto=$request->file('foto');
                 $fotocandidato=$foto->getClientOriginalName();
             }
-            $campos=array('nombrecompleto'=>$request->nombrecompleto,'sexo'=>$request->sexo, 'foto'=>$fotocandidato, 'perfil'=>$perfil);
+            if($request->hasFile('perfil') ){
+                $perfil =$request->file('perfil');
+                $perfilcandidato = $perfil->getClientOriginalName();
+            }
+
+            $campos=array(
+                'nombrecompleto'=>$request->nombrecompleto,
+                'sexo'=>$request->sexo,
+                'foto'=>$fotocandidato, 
+                'perfil'=>$perfilcandidato);
+
+                if($request->hasFile('foto')) $foto->move(public_path('img'), $fotocandidato);
+                if($request->hasFile('perfil')) $perfil->move(public_path('img'), $perfilcandidato);
+
+                $candidato = Candidato::create($campos);
+                $resp=$this->sendResponse($candidato, "Guardado...");
+                return ($resp);
         }
     }
 

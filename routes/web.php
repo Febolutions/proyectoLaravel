@@ -33,6 +33,6 @@ Route::get('Login/facebook',[LoginController::class, 'redirectToFacebookProvider
 Route::get('login/facebook/callback', [LoginController::class, 'handleProviderFacebookCallback']);
 Route::get('logout', [LoginController::class, 'logout']);
 
-Route::middleware(['auth'])->group(fuction(){
+Route::middleware(['auth'])->group(function(){
     Route::resource('voto', VotoController::class);
 });

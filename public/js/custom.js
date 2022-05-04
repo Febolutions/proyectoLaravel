@@ -30,6 +30,8 @@ function validateData (){
 function previewPDF (event, idFrame){
     if(event.target.files.lenght>0){
         let src=URL.createObjectURL(event.target.files[0]);
-        let previewPDF=document.getElementById
+        let pdfPreview=document.getElementById(idFrame);
+        pdfPreview.src=src;
+        pdfPreview.style.display="block";
     }
 }
