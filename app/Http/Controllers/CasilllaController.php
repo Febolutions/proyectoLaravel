@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Casilla;
 
 class CasilllaController extends Controller
 {
@@ -13,7 +14,9 @@ class CasilllaController extends Controller
      */
     public function index()
     {
-        //
+        $casillas = Casilla::all();
+        $today = now();
+        return view('casilla/list', compact('casillas','today'));
     }
 
     /**
@@ -34,7 +37,10 @@ class CasilllaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validateData($request);
+        $data['ubicacion'] = $request->ubicacion;
+        $casilla = Casilla::create($data);
+        return redirect('casilla')->with('success', $casilla->ubicacion.'guardado satisfactoriamente...');
     }
 
     /**
@@ -45,7 +51,7 @@ class CasilllaController extends Controller
      */
     public function show($id)
     {
-        //
+        echo "Element $id";
     }
 
     /**
@@ -56,7 +62,12 @@ class CasilllaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $casilla = Casilla::find($id);
+        return view('casilla/edit', compact('casilla'));
+    }
+
+    function validateData(Request $request){
+        $request->validate(['ubicacion'=>'required|max:100']);
     }
 
     /**
@@ -68,7 +79,10 @@ class CasilllaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validateData($request);
+        $data['ubicacion']= $request->ubicacion;
+        Casilla::whereId($id)->update($data);
+        return redirect('casilla')->with('success','Actualizado correctamente...');
     }
 
     /**
@@ -79,6 +93,7 @@ class CasilllaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Casilla::whereId($id)->delete();
+        return redirect('casilla');
     }
 }
