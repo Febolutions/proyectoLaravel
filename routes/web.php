@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::resource("candidato", CandidatoController::class);
-
+Route::resource("voto", VotoController::class);
 Route::resource("casilla", CasilllaController::class);
 
 /* LOGIN WITH FACEBOOK */

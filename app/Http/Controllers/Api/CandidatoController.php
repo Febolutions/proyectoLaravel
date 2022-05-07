@@ -6,6 +6,9 @@ use App\Http\Controllers\Api\GenericController as GenericController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Candidato;
+use App\Models\Votocandidato;
+use Exception;
+use Iluminate\Support\Facades\DB;
 
 class CandidatoController extends GenericController
 {
@@ -39,7 +42,7 @@ class CandidatoController extends GenericController
      */
     public function store(Request $request)
     {
-        $validacion=Validator::make($request->all(),['nombrecompleto'=>'unique:candidato|requiered|max:200', 'sexo'=>'required']);
+        $validacion=Validator::make($request->all(),['nombrecompleto' => 'unique:candidato|requiered|max:200', 'sexo' => 'required']);
         if($validacion->fails()){
             return $this->sendError("Error de validacion", $validacion->errors());
             
@@ -89,7 +92,19 @@ class CandidatoController extends GenericController
      */
     public function edit($id)
     {
-        //
+        $id = intval($id);
+        $candidato = Candidato::find($id);
+        return $this->send($candidato, $id);
+    }
+
+    private function send($data, $id){
+        if ($data){
+            $resp=$this->sendResponse($data, "Operaciòn satisfactoria...");
+        }
+        else{
+            $resp= $this->sendError("No se encontró el candidato $id");
+        }
+        return ($resp);
     }
 
     /**
@@ -112,6 +127,18 @@ class CandidatoController extends GenericController
      */
     public function destroy($id)
     {
-        //
+        $candidato = Candidato::find($id);
+        DB::beginTransaction();
+        try{
+            if($candidato){
+                Votocandidato::where('candidato_id','=',$id)->delete();
+            }
+            Candidato::whereId($id)->delete();
+            DB::commit();
+        }
+        catch(\Exception $ex){
+            DB::rollBack();
+        }
+        return $this->send($cadidato, $id);
     }
 }
