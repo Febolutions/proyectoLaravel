@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CasilllaController;
 use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\VotoController;
-
-use App\Http\Controllers\auth\LoginController;
+use App\Http\Controllers\EleccionController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,15 +23,23 @@ Route::get('/', function () {
 });
 
 Route::resource("candidato", CandidatoController::class);
-Route::resource("voto", VotoController::class);
 Route::resource("casilla", CasilllaController::class);
+Route::resource("voto", VotoController::class);
+Route::resource("eleccion", EleccionController::class);
 
 /* LOGIN WITH FACEBOOK */
 
 Route::get('login', [LoginController::class.'index'])->name('login');
-Route::get('Login/facebook',[LoginController::class, 'redirectToFacebookProvider'] );
-Route::get('login/facebook/callback', [LoginController::class, 'handleProviderFacebookCallback']);
+Route::get('/login', 'App\Http\Controllers\Auth\LoginController@index');
+
+Route::get('/login/facebook', 'App\Http\Controllers\Auth\LoginController@redirectToFacebookProvider');
+Route::get('/login/facebook/callback', 'App\Http\Controllers\Auth\LoginController@handleProviderFacebookCallback');
 Route::get('logout', [LoginController::class, 'logout']);
+
+
+//Route::get('login/facebook',[LoginController::class, 'redirectToFacebookProvider'] );
+//Route::get('login/facebook/callback', [LoginController::class, 'handleProviderFacebookCallback']);
+
 
 Route::middleware(['auth'])->group(function(){
     Route::resource('voto', VotoController::class);

@@ -29,11 +29,5 @@
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
     </div>
-    <div class="form-group">
-        <label for="perfil">Perfil:</label>
-        <input type="file" id="perfil" accept="application/pdf" class="form-control" name="perfil" onchange="previewPDF(event, 'previewPDF');">
-    </div>
-    <iframe id="previewPDF" style="display:none;" title="preview"></iframe>
-    <button type="submit" class="btn btn-primary">Guardar</button>
 </div>
 @endsection

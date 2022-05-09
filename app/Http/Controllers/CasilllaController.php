@@ -40,7 +40,7 @@ class CasilllaController extends Controller
         $this->validateData($request);
         $data['ubicacion'] = $request->ubicacion;
         $casilla = Casilla::create($data);
-        return redirect('casilla')->with('success', $casilla->ubicacion.'guardado satisfactoriamente...');
+        return redirect('casilla')->with('success', $casilla->ubicacion.' guardado satisfactoriamente...');
     }
 
     /**

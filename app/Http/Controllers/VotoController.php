@@ -81,7 +81,7 @@ class VotoController extends Controller
         DB::beginTransaction();
         try {
             //--- save to voto
-            $voto =Voto::create($data);
+            $voto = Voto::create($data);
 
             //--- save to votocandidato
             foreach($candidatos as $key=>$value){

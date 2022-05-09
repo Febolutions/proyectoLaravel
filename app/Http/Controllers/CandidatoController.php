@@ -101,6 +101,15 @@ class CandidatoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validateData($request);
+
+        $fotoCandidato = "";
+        $perfilCandidato = "";
+
+        if($request->hasFile('foto')){
+            $foto = $request->file('foto');
+            $fotoCandidato = $foto->getClientOriginalName();
+        }
         
         if ($request->hasFile('perfil')) {
             $perfil = $request->file('perfil');

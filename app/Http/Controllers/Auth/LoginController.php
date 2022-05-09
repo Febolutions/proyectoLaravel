@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
 
 class LoginController extends Controller
 {
+    use AuthenticatesUsers;
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +18,26 @@ class LoginController extends Controller
      */
     public function index()
     {
-        //
+        return view('auth/login');
     }
+    public function redirectToFacebookProvider(){
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    public function handleProviderFacebookCallback(){
+        $auth_user = Socialite::driver('facebook')->user();
+        //dd($auth_user);
+        return redirect("/candidato");
+    }
+
+    public function logout(request $request){
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirected("Login");
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
