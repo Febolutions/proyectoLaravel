@@ -38,4 +38,5 @@
         </tbody>
     </table>
 </div>
+<div><a href="http://localhost:8080/casilla/pdf" class="btn btn-dark bg-dark">PDF VIEW</a></div>
 @endsection

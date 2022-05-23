@@ -59,14 +59,14 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <img src="https://www.voaxaca.tecnm.mx/wp-content/uploads/2020/05/itvo.ico" width="200px">
+                <img src="https://www.voaxaca.tecnm.mx/wp-content/uploads/2020/05/itvo.ico" width="100px" style="margin: 7%;">
             </div>
             <div class="col-md-8 text-center">
                 <h1>Instituto Tecnológico del Valle de Oaxaca</h1>
                 <h5>Elección de la Reina ITVO</h5>
             </div>
             <div class="col-md-2">
-
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/9d/TecNM_logo.png" width="150px" style="margin: 7%;">
             </div>
 
         </div>

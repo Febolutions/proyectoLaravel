@@ -36,6 +36,9 @@ Route::get('/login/facebook', 'App\Http\Controllers\Auth\LoginController@redirec
 Route::get('/login/facebook/callback', 'App\Http\Controllers\Auth\LoginController@handleProviderFacebookCallback');
 Route::get('logout', [LoginController::class, 'logout']);
 
+/* PDF ROUTE */
+Route::get('casilla/pdf','CasilllaController@generatepdf');
+
 /* cambios que hizo el profe */
 //Route::get('login', [LoginController::class.'index'])->name('login');
 //Route::get('/login', 'App\Http\Controllers\Auth\LoginController@index');
