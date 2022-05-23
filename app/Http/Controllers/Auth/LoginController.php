@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-//use Illuminate\Http\Request;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+//use Illuminate\Support\Facades\Socialite;
 use Socialite;
 
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
+
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +36,7 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirected("Login");
+        return redirect("login");
     }
 
 
