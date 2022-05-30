@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Casilla;
 use Barryvdh\DomPDF\Facade as PDF;
+//use PDF;
 
 class CasilllaController extends Controller
 {
@@ -89,7 +90,7 @@ class CasilllaController extends Controller
     public function generatepdf(){
         $casillas = Casilla::all();
         $pdf = PDF::loadView('casilla/list',['casillas'=>$casillas]);
-        return $pdf->download('archivo.pdf');
+        return $pdf->stream('archivo.pdf');
 
         //$html = "<div style='text-align:center'><h1>PDF generado desde etiquetas html</h1>
         //<br><h3>&copy;stephanie.dev</h3></div>";
