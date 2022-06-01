@@ -7,6 +7,7 @@ use App\Http\Controllers\VotoController;
 use App\Http\Controllers\EleccionController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PDFController;
+use App\Http\Controllers\HighChartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::get('/phpinfo', function () {
 Route::get('casilla/pdf','CasilllaController@generatepdf');
 Route::resource("candidato", CandidatoController::class);
 Route::resource("casilla", CasilllaController::class);
-//Route::resource("voto", VotoController::class);
+Route::resource("voto", VotoController::class);
 Route::resource("eleccion", EleccionController::class);
 
 /* LOGIN WITH FACEBOOK */
@@ -47,6 +48,9 @@ Route::get('casilla/pdf','CasilllaController@generatepdf');
 //Route::get('generate-PD', [PDFController::class, 'generatePDF']);
 Route::get('PDF/myPDF','PDFController@generatePDF');
 
+/* HIGHCHART GRAPHIC */
+Route::get('grafica-votos', [HighChartController::class, 'index']);
+
 /* cambios que hizo el profe */
 //Route::get('login', [LoginController::class.'index'])->name('login');
 //Route::get('/login', 'App\Http\Controllers\Auth\LoginController@index');
@@ -56,6 +60,6 @@ Route::get('PDF/myPDF','PDFController@generatePDF');
 //Route::get('logout', [LoginController::class, 'logout']);
 
 
-Route::middleware(['Auth'])->group(function(){
-    Route::resource('voto', VotoController::class);
-});
+//Route::middleware(['Auth'])->group(function(){
+//    Route::resource('voto', VotoController::class);
+//});

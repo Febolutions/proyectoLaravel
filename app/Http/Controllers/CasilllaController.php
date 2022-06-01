@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Casilla;
-use Barryvdh\DomPDF\Facade as PDF;
-//use PDF;
+//use Barryvdh\DomPDF\Facade as PDF;
+use PDF;
 
 class CasilllaController extends Controller
 {

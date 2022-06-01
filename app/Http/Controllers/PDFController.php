@@ -25,6 +25,10 @@ class PDFController extends Controller
 
         $pdf = PDF::loadView('PDF/myPDF', $data);
         return $pdf-> download('mypdfSteph.pdf');
+
+        /*$casillas = Casilla::all();
+        $pdf = PDF::loadView('casilla/list',['casillas'=>$casillas]);
+        return $pdf->stream('archivo.pdf'); */
     }
 
     /**
