@@ -87,9 +87,9 @@ class CasilllaController extends Controller
         return redirect('casilla')->with('success','Actualizado correctamente...');
     }
 
-    public function generatepdf(){
+    /*public function generatepdf(){
         $casillas = Casilla::all();
-        $pdf = PDF::loadView('casilla/list',['casillas'=>$casillas]);
+        $pdf = PDF::loadView('casilla/pdfList',['casillas'=>$casillas]);
         return $pdf->stream('archivo.pdf');
 
         //$html = "<div style='text-align:center'><h1>PDF generado desde etiquetas html</h1>
@@ -99,7 +99,7 @@ class CasilllaController extends Controller
 
         //$casillas = Casilla::all();
         //return PDF::loadView('casilla/list',['casillas'=>$casillas])->stream('archivo.pdf');
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.

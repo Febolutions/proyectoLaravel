@@ -1,18 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-//use Illuminate\Support\Facades\Socialite;
-use Socialite;
 
-class LoginController extends Controller
+class HomeController extends Controller
 {
-    use AuthenticatesUsers;
-
     /**
      * Display a listing of the resource.
      *
@@ -20,26 +13,8 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('auth/login');
+        return view ('/home');
     }
-    public function redirectToFacebookProvider(){
-        return Socialite::driver('facebook')->redirect();
-    }
-
-    public function handleProviderFacebookCallback(){
-        $auth_user = Socialite::driver('facebook')->user();
-        //dd($auth_user);
-        return redirect("/home");
-    }
-
-    public function logout(request $request){
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect("login")->with(Auth::logout());
-    }
-
-
 
     /**
      * Show the form for creating a new resource.

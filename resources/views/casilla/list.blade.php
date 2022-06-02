@@ -5,6 +5,9 @@
     .uper {
         margin-top: 40px;
     }
+    #pdfB{
+        margin-bottom:7%;
+    }
 </style>
 <div class="uper">
     @if(session()->get('success'))
@@ -38,5 +41,5 @@
         </tbody>
     </table>
 </div>
-<div><a href="http://localhost:8080/casilla/pdf" class="btn btn-dark bg-dark">PDF VIEW</a></div>
+<div><a id="pdfB" href="/PDF/myPDF" class="btn btn-dark bg-dark">PDF VIEW</a></div>
 @endsection

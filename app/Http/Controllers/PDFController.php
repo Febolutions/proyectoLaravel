@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Casilla;
 use PDF;
 
 class PDFController extends Controller
@@ -17,7 +18,7 @@ class PDFController extends Controller
         //
     }
 
-    public function generatePDF(){
+    /*public function generatePDF(){
         $data = [
             'title' =>'First PDF version',
             'date' => date('m/d/Y')
@@ -26,9 +27,18 @@ class PDFController extends Controller
         $pdf = PDF::loadView('PDF/myPDF', $data);
         return $pdf-> download('mypdfSteph.pdf');
 
-        /*$casillas = Casilla::all();
-        $pdf = PDF::loadView('casilla/list',['casillas'=>$casillas]);
-        return $pdf->stream('archivo.pdf'); */
+    }*/
+
+    public function generatePDF(){
+        $casillas = Casilla::all();
+        $data = [
+            'title' =>'INSTITUTO TECNOLÓGICO DEL VALLE DE OAXACA',
+            'date' => date('m/d/Y'),
+            'casillas' => $casillas
+        ];
+
+        $pdf = PDF::loadView('PDF/myPDF', $data);
+        return $pdf-> download('casillas.pdf');
     }
 
     /**

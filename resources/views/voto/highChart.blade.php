@@ -15,12 +15,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home">Inicio</a>
+                        </li>
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Candidato
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="http://localhost:8080/candidato/create">Crear</a>
-                                <a class="dropdown-item" href="http://localhost:8080/candidato">Consultar</a>
+                                <a class="dropdown-item" href="/candidato/create">Crear</a>
+                                <a class="dropdown-item" href="/candidato">Consultar</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -28,8 +31,8 @@
                                 Casilla
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="http://localhost:8080/casilla/create">Crear</a>
-                                <a class="dropdown-item" href="http://localhost:8080/casilla">Lista</a>
+                                <a class="dropdown-item" href="/casilla/create">Crear</a>
+                                <a class="dropdown-item" href="/casilla">Lista</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -37,8 +40,8 @@
                                 Elecciones
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="http://localhost:8080/eleccion/create">Crear</a>
-                                <a class="dropdown-item" href="http://localhost:8080/eleccion">Lista</a>
+                                <a class="dropdown-item" href="/eleccion/create">Crear</a>
+                                <a class="dropdown-item" href="/eleccion">Lista</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -46,12 +49,13 @@
                                 Voto
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="http://localhost:8080/voto/create">Crear</a>
-                                <a class="dropdown-item" href="http://localhost:8080/voto">Lista</a>
+                                <a class="dropdown-item" href="/voto/create">Crear</a>
+                                <a class="dropdown-item" href="/voto">Lista</a>
+                                <a class="dropdown-item" href="/grafica-votos">Gráfica</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Cerrar Sesión</a>
+                            <a class="nav-link" href="/logout">Cerrar Sesión</a>
                         </li>
                     </ul>
                 </div>
@@ -71,15 +75,22 @@
 
         </div>
     </header>
-    <div class="container">
+    <main>
+    <div class="container" style="margin-bottom: 10%;">
         <h2 style="text-align: center;">Votos 2022</h2>
         <div class="panel panel-primary">
-            <div class="panel-heading">Gráfica</div>
             <div class="panel-body">
                 <div id="pie-chart"></div>
             </div>
         </div>
     </div>
+    </main>
+    <footer class="bg-dark text-center text-lg-start">
+        <div class="text-center p-3 text-light fixed-bottom bg-dark">
+        © 2020 Copyright:
+        <a class="text-light" href="https://github.com/Febolutions/proyectoLaravel.git">Febolutions</a>
+    </div>
+</footer>
     <script src="{{asset('app.js')}}" type="text/js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -115,7 +126,7 @@
                         cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
-                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                            format: '<b>{point.nombre}</b>: {point.percentage:.1f} %'
                         }
                     }
                 },

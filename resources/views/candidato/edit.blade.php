@@ -3,6 +3,7 @@
 <style>
     .uper {
         margin-top: 40px;
+        margin-bottom: 10%;
     }
 </style>
 <div class="card uper">

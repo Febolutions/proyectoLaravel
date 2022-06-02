@@ -1,4 +1,4 @@
-@extends('plantilla')
+@extends('plantilla_login')
 @section('content')
 
 <style>
